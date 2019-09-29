@@ -76,7 +76,7 @@ oldfile=OldFile(str)
 dict=oldfile.find()
 #print(dict)
 #转换成json文件
-jsonfile=json.dumps(dict)
+jsonfile=json.dumps(dict,ensure_ascii=False)
 print(jsonfile)
 
 
