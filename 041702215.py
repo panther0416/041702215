@@ -1,4 +1,3 @@
-# cooding=utf-8
 import cpca
 import re
 import json
@@ -42,12 +41,12 @@ class OldFile(str):
         elif "乡" in detailed_address:
             self.address.append(detailed_address.split("乡")[0]+"乡")
             detailed_address=detailed_address.replace((detailed_address.split("乡")[0]+"乡"),"")
+        elif "苏木" in detailed_address:
+            self.address.append(detailed_address.split("苏木")[0]+"苏木")
+            detailed_address=detailed_address.replace((detailed_address.split("苏木")[0]+"苏木"),"")
         elif "开发区" in detailed_address:
             self.address.append(detailed_address.split("开发区")[0]+"开发区")
             detailed_address=detailed_address.replace((detailed_address.split("开发区")[0]+"开发区"),"")
-        elif "管委会" in detailed_address:
-            self.address.append(detailed_address.split("管委会")[0]+"管委会")
-            detailed_address=detailed_address.replace((detailed_address.split("管委会")[0]+"管委会"),"")
         elif "合作区" in detailed_address:
             self.address.append(detailed_address.split("合作区")[0]+"合作区")
             detailed_address=detailed_address.replace((detailed_address.split("合作区")[0]+"合作区"),"")
@@ -60,19 +59,28 @@ class OldFile(str):
             if "路" in detailed_address:
                 self.address.append(detailed_address.split("路")[0]+"路")
                 detailed_address=detailed_address.split("路")[1]
+            elif "村" in detailed_address:
+                self.address.append(detailed_address.split("村")[0]+"村")
+                detailed_address=detailed_address.split("村")[1]
+            elif "道" in detailed_address:
+                self.address.append(detailed_address.split("道")[0]+"道")
+                detailed_address=detailed_address.split("道")[1]
             elif "街" in detailed_address:
                 self.address.append(detailed_address.split("街")[0]+"街")
                 detailed_address=detailed_address.split("街")[1]
             elif "巷" in detailed_address:
                 self.address.append(detailed_address.split("乡")[0]+"乡")
                 detailed_address=detailed_address.split("乡")[1]
-            elif "村" in detailed_address:
-                self.address.append(detailed_address.split("村")[0]+"村")
-                detailed_address=detailed_address.split("村")[1]
+            elif "小区" in detailed_address:
+                self.address.append(detailed_address.split("小区")[0]+"小区")
+                detailed_address=detailed_address.split("小区")[1]
             else:
                 self.address.append("")
             #号
-            if("号" in detailed_address):
+            if("号楼" in detailed_address):
+                self.address.append(detailed_address.split("号楼")[0]+"号楼")
+                self.address.append(detailed_address.split("号楼")[1])
+            elif("号" in detailed_address):
                 self.address.append(detailed_address.split("号")[0]+"号")
                 self.address.append(detailed_address.split("号")[1])
             else:
@@ -96,12 +104,12 @@ def main(str):
 
 while(1):
     try:
-        line=input()
-        if(line=="END"):
+        str=input()
+        if(str=="END"):
             break
     except:
         break
-    main(line)
+    main(str)
 
 
 
