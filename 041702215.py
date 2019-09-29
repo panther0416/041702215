@@ -65,6 +65,9 @@ class OldFile(str):
             elif "巷" in detailed_address:
                 self.address.append(detailed_address.split("乡")[0]+"乡")
                 detailed_address=detailed_address.split("乡")[1]
+            elif "村" in detailed_address:
+                self.address.append(detailed_address.split("村")[0]+"村")
+                detailed_address=detailed_address.split("村")[1]
             else:
                 self.address.append("")
             #号
@@ -72,6 +75,7 @@ class OldFile(str):
                 self.address.append(detailed_address.split("号")[0]+"号")
                 self.address.append(detailed_address.split("号")[1])
             else:
+                self.address.append("")
                 self.address.append(detailed_address)
         else:
             self.address.append(detailed_address)
