@@ -19,6 +19,7 @@ class OldFile(str):
         self.str=self.str.replace(self.phone,"")
         return self.phone
     def find_address(self):
+        self.address=[]
         self.str=self.str.strip(',.')
         addr=cpca.transform([self.str],cut=False)
         addr=dict(addr.iloc[0,0:4])     #DataFrame格式转换成dict格式
@@ -82,14 +83,12 @@ class OldFile(str):
             "地址":self.find_address()
               }
         return dict
-    
-str=input()
-oldfile=OldFile(str)
-dict=oldfile.find()
-jsonfile=json.dumps(dict,ensure_ascii=False)
-print(jsonfile)
+def main(str):
+    oldfile=OldFile(str)
+    dict=oldfile.find()
+    jsonfile=json.dumps(dict,ensure_ascii=False)
+    print(jsonfile)
 
-'''
 while(1):
     try:
         line=input()
@@ -98,7 +97,7 @@ while(1):
     except:
         break
     main(line)
-'''
+
 
 
 #处理字符串的其他方法
