@@ -82,11 +82,12 @@ class OldFile(str):
             "地址":self.find_address()
               }
         return dict
-    str=input()
-    oldfile=OldFile(str)
-    dict=oldfile.find()
-    jsonfile=json.dumps(dict,ensure_ascii=False)
-    print(jsonfile)
+    
+str=input()
+oldfile=OldFile(str)
+dict=oldfile.find()
+jsonfile=json.dumps(dict,ensure_ascii=False)
+print(jsonfile)
 
 '''
 while(1):
