@@ -33,22 +33,22 @@ class OldFile(str):
         #街道/镇/乡/开发区/管委会/合作区,详细地址
         if "街道" in detailed_address:
             self.address.append(detailed_address.split("街道")[0]+"街道")
-            detailed_address=detailed_address.split("街道")[1]
+            detailed_address=detailed_address.replace((detailed_address.split("街道")[0]+"街道"),"")
         elif "镇" in detailed_address:
             self.address.append(detailed_address.split("镇")[0]+"镇")
-            detailed_address=detailed_address.split("镇")[1]
+            detailed_address=detailed_address.replace((detailed_address.split("镇")[0]+"镇"),"")
         elif "乡" in detailed_address:
             self.address.append(detailed_address.split("乡")[0]+"乡")
-            detailed_address=detailed_address.split("乡")[1]
+            detailed_address=detailed_address.replace((detailed_address.split("乡")[0]+"乡"),"")
         elif "开发区" in detailed_address:
             self.address.append(detailed_address.split("开发区")[0]+"开发区")
-            detailed_address=detailed_address.split("开发区")[1]
+            detailed_address=detailed_address.replace((detailed_address.split("开发区")[0]+"开发区"),"")
         elif "管委会" in detailed_address:
             self.address.append(detailed_address.split("管委会")[0]+"管委会")
-            detailed_address=detailed_address.split("管委会")[1]
+            detailed_address=detailed_address.replace((detailed_address.split("管委会")[0]+"管委会"),"")
         elif "合作区" in detailed_address:
             self.address.append(detailed_address.split("合作区")[0]+"合作区")
-            detailed_address=detailed_address.split("合作区")[1]
+            detailed_address=detailed_address.replace((detailed_address.split("合作区")[0]+"合作区"),"")
         else:
             self.address.append("")
             
