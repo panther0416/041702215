@@ -22,12 +22,15 @@ class OldFile(str):
         self.str=self.str.strip(',.')
         addr=cpca.transform([self.str],cut=False)
         addr=dict(addr.iloc[0,0:4])     #DataFrame格式转换成dict格式
+        #直辖市
+        if(addr["省"]=="北京市" or addr["省"]=="天津市" or addr["省"]=="重庆市" or addr["省"]=="上海市"):
+            addr["省"]=addr["省"].split("市")[0]
         self.address.append(addr["省"])
         self.address.append(addr["市"])
         self.address.append(addr["区"])
         detailed_address=addr["地址"]
         
-        #街道/镇/乡,详细地址
+        #街道/镇/乡/开发区/管委会/合作区,详细地址
         if "街道" in detailed_address:
             self.address.append(detailed_address.split("街道")[0]+"街道")
             detailed_address=detailed_address.split("街道")[1]
@@ -37,6 +40,15 @@ class OldFile(str):
         elif "乡" in detailed_address:
             self.address.append(detailed_address.split("乡")[0]+"乡")
             detailed_address=detailed_address.split("乡")[1]
+        elif "开发区" in detailed_address:
+            self.address.append(detailed_address.split("开发区")[0]+"开发区")
+            detailed_address=detailed_address.split("开发区")[1]
+        elif "管委会" in detailed_address:
+            self.address.append(detailed_address.split("管委会")[0]+"管委会")
+            detailed_address=detailed_address.split("管委会")[1]
+        elif "合作区" in detailed_address:
+            self.address.append(detailed_address.split("合作区")[0]+"合作区")
+            detailed_address=detailed_address.split("合作区")[1]
         else:
             self.address.append("")
             
@@ -70,16 +82,22 @@ class OldFile(str):
             "地址":self.find_address()
               }
         return dict
+    str=input()
+    oldfile=OldFile(str)
+    dict=oldfile.find()
+    jsonfile=json.dumps(dict,ensure_ascii=False)
+    print(jsonfile)
 
-str=input()
-oldfile=OldFile(str)
-dict=oldfile.find()
-#print(dict)
-#转换成json文件
-jsonfile=json.dumps(dict,ensure_ascii=False)
-print(jsonfile)
-
-
+'''
+while(1):
+    try:
+        line=input()
+        if(line=="END"):
+            break
+    except:
+        break
+    main(line)
+'''
 
 
 #处理字符串的其他方法
